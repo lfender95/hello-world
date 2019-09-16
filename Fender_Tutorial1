@@ -47,4 +47,37 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey("escape"))
             Application.Quit();
     }
+    
+    using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Rotater : MonoBehaviour
+{
+    void Update()
+    {
+        transform.Rotate(new Vector3(0, 0, 45) * Time.deltaTime);   
+    }
+}
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CameraController : MonoBehaviour
+{
+    public GameObject player;
+    private Vector3 offset;
+    // Start is called before the first frame update
+    void Start()
+    {
+        offset = transform.position - player.transform.position;
+    }
+
+    // Update is called once per frame
+    void LateUpdate()
+    {
+        transform.position = player.transform.position + offset;
+    }
+}
+
 }
